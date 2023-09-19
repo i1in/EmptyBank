@@ -1,0 +1,26 @@
+﻿<Application x:Class="EmptyBank.XAML_App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:view="clr-namespace:EmptyBank.MVVM.View"
+             xmlns:vms="clr-namespace:EmptyBank.MVVM.ViewModel"
+             StartupUri="MVVM/View/MainWindow.xaml">
+    <Application.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Страницы -->
+                <ResourceDictionary Source="/Themes/MainWindowStyle.xaml" />
+                <ResourceDictionary Source="/Themes/AuthViewStyle.xaml" />
+                <ResourceDictionary Source="/Themes/SignViewStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type vms:AuthViewModel}">
+                <view:AuthView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vms:SignViewModel}">
+                <view:SignView />
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

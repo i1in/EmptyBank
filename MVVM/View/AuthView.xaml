@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="EmptyBank.MVVM.View.AuthView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EmptyBank.MVVM.View" xmlns:viewmodel="clr-namespace:EmptyBank.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="470" d:DesignWidth="450"
+             Background="#1c1c1c">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <TextBlock Style="{StaticResource LoginTextBlock}"/>
+                <TextBlock Style="{StaticResource LoginTextBlockMini}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1"
+                HorizontalAlignment="Center"
+                Width="350">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0">
+                        <TextBlock x:Name = "Login" Style="{StaticResource AuthLoginTextBlock}"/>
+                        <TextBox Style="{StaticResource AuthLoginTextBox}" />
+
+                        <TextBlock Style="{StaticResource AuthPassTextBlock}"/>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="314" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <PasswordBox Style="{StaticResource AuthPasswordBox}" Grid.Column="0"/>
+                            <CheckBox Style="{StaticResource ShowPassword}"
+                              VerticalAlignment="Top" Height="36" Width="36" Grid.Column="1" Margin="0,10,0,0"/>
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <CheckBox Style="{StaticResource RememberCheckBox}"/>
+                            <TextBlock Text="Запомнить меня" 
+                               Grid.Column="1"
+                               Margin="8,18,0,0"
+                               Foreground="#CFCFCF"/>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <StackPanel Grid.Row="1" 
+                VerticalAlignment="Bottom">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button Style="{StaticResource AuthButton}" Grid.Row="0">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5" />
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                    <Button Style="{StaticResource SignButton}" 
+                    Grid.Row="0" 
+                    Grid.Column="1" 
+                    Margin="0,4,0,56"
+                    Command="{Binding ShowSignView}" Click="Button_Click">
+                        <Run Style="{StaticResource SignButtonSpan}">
+                            Зарегистрироваться
+                        </Run>
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <ContentPresenter Content="{Binding CurrentView}" />
+    </Grid>
+</UserControl>

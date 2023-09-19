@@ -1,0 +1,49 @@
+﻿<Window x:Class="EmptyBank.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodel="clr-namespace:EmptyBank.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="Empty" Height="500" Width="450" ResizeMode="NoResize"
+        Background="#1c1c1c"
+        WindowStyle="None"
+        AllowsTransparency="False">
+    
+    <Window.DataContext>
+        <viewmodel:MainViewModel />
+    </Window.DataContext>
+    
+    <DockPanel>
+
+        <Border Height="30" 
+            Background="Transparent"
+            DockPanel.Dock="Top">
+
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick"
+                              Command="{Binding MoveWindow}"/>
+            </Border.InputBindings>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Style="{StaticResource ApplicationName}"/>
+
+                <StackPanel Style="{StaticResource ApplicationBorderButtons}">
+                    <Button Style="{StaticResource ApplicationBorderButton}" 
+                        Content="—"
+                        Command="{Binding HideWindow}"/>
+                    <Button Style="{StaticResource ApplicationBorderButtonShutdown}" 
+                        Content="╳" 
+                        Command="{Binding ShutdownWindow}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <ContentPresenter Content="{Binding CurrentView}"/>
+
+    </DockPanel>
+</Window>
