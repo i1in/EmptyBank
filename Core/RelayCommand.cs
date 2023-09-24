@@ -30,7 +30,12 @@ namespace EmptyBank.Core
             this.execute(parameter);    
         }
 
-
+        public void OnExecute(object parameter)
+        {
+            var values = (object[]) parameter;
+            var password = (string)values[0];
+            var repeatPassword = (string)values[1];
+        }
 
     }
 }

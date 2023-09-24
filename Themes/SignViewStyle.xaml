@@ -21,7 +21,7 @@
         <Setter Property="Text" Value="Придумайте логин" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Margin" Value="0,30,0,13"/>
+        <Setter Property="Margin" Value="0,50,0,13"/>
         <Setter Property="FontSize" Value="17" />
         <Setter Property="FontFamily" Value="Roboto" />
     </Style>
@@ -57,7 +57,7 @@
         <Setter Property="Text" Value="Придумайте пароль" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Margin" Value="0,30,0,13"/>
+        <Setter Property="Margin" Value="0,50,0,10"/>
         <Setter Property="FontSize" Value="17" />
         <Setter Property="FontFamily" Value="Roboto" />
     </Style>
@@ -89,42 +89,6 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="{x:Type TextBlock}" x:Key="RepeatSignInTextBlockPassword">
-        <Setter Property="Text" Value="Повторите пароль" />
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Margin" Value="0,30,0,13"/>
-        <Setter Property="FontSize" Value="17" />
-        <Setter Property="FontFamily" Value="Roboto" />
-    </Style>
-
-    <Style TargetType="{x:Type PasswordBox}" x:Key="RepeatSignInPasswordBox">
-        <Setter Property="BorderThickness" Value="0,0,0,2" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Height" Value="26" />
-        <Setter Property="Margin" Value="0,0,36,0" />
-        <Setter Property="FontSize" Value="18" />
-        <Setter Property="BorderBrush" Value="White" />
-        <Setter Property="CaretBrush" Value="White" />
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="FontFamily" Value="Roboto" />
-        <Setter Property="Effect" >
-            <Setter.Value>
-                <DropShadowEffect BlurRadius="40" Color="White"/>
-            </Setter.Value>
-        </Setter>
-
-        <Style.Triggers>
-            <Trigger Property="IsFocused" Value="True">
-                <Setter Property="Effect" >
-                    <Setter.Value>
-                        <DropShadowEffect BlurRadius="40" Color="Blue"/>
-                    </Setter.Value>
-                </Setter>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-    
     <Style TargetType="{x:Type Button}" x:Key="SignInButton">
         <Setter Property="Content" Value="Зарегистрироваться" />
         <Setter Property="Height" Value="36" />
@@ -166,7 +130,7 @@
 
     <Style TargetType="{x:Type Button}" x:Key="IsSignedInButton">
         <Setter Property="Content" Value="Sign In" />
-        <Setter Property="Margin" Value="0,10,0,0" />
+        <Setter Property="Margin" Value="234,10,66,0" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="#cfcfcf" />
@@ -194,5 +158,21 @@
                 <Setter Property="TextDecorations" Value="Underline" />
             </Trigger>
         </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="SignLoginWarning">
+        <Setter Property="Foreground" Value="Red" />
+        <Setter Property="Margin" Value="0,5,0,0" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="SignPasswordWarning">
+        <Setter Property="Foreground" Value="Red" />
+        <Setter Property="Margin" Value="0,5,0,0" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontSize" Value="12" />
     </Style>
 </ResourceDictionary>

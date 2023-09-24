@@ -26,8 +26,13 @@ namespace EmptyBank.MVVM.ViewModel
 
         public SignViewModel SignViewPage { get; set; }
         public AuthViewModel() {
+            ShowSignView = new RelayCommand(sender => ShowSignUpView(sender));
+        }
+
+        private void ShowSignUpView(object sender)
+        {
             SignViewPage = new SignViewModel();
-            ShowSignView = new RelayCommand(n => { CurrentView = SignViewPage; });
+            MainViewModel.Instance.CurrentView = SignViewPage;
         }
     }
 }

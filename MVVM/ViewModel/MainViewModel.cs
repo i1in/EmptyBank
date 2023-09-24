@@ -11,9 +11,6 @@ namespace EmptyBank.MVVM.ViewModel
     internal class MainViewModel : ObservableObject
     {
         /* Все используемые команды*/
-        public RelayCommand MoveWindow {  get; set; }
-        public RelayCommand ShutdownWindow { get; set; }
-        public RelayCommand HideWindow {  get; set; }
         
         public RelayCommand ShowAuthView { get; set; }
         public RelayCommand ShowSignView { get; set; }
@@ -34,16 +31,15 @@ namespace EmptyBank.MVVM.ViewModel
 
         public SignViewModel SignViewPage { get; set; }
 
+        public static MainViewModel Instance { get; set; }
+
         public MainViewModel()
         {
+            Instance = this;
             AuthViewPage = new AuthViewModel();
             SignViewPage = new SignViewModel();
             CurrentView = AuthViewPage;
             Application.Current.MainWindow.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
-
-            MoveWindow = new RelayCommand(n => { Application.Current.MainWindow.DragMove(); });
-            ShutdownWindow = new RelayCommand(n => { Application.Current.Shutdown();});
-            HideWindow = new RelayCommand(n => { Application.Current.MainWindow.WindowState = WindowState.Minimized; });
 
             ShowAuthView = new RelayCommand(n => { CurrentView = AuthViewPage; });
         }

@@ -17,13 +17,9 @@
     <DockPanel>
 
         <Border Height="30" 
-            Background="Transparent"
-            DockPanel.Dock="Top">
-
-            <Border.InputBindings>
-                <MouseBinding MouseAction="LeftClick"
-                              Command="{Binding MoveWindow}"/>
-            </Border.InputBindings>
+    Background="Transparent"
+    DockPanel.Dock="Top"
+    MouseDown="MoveWindow">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -34,16 +30,16 @@
 
                 <StackPanel Style="{StaticResource ApplicationBorderButtons}">
                     <Button Style="{StaticResource ApplicationBorderButton}" 
-                        Content="—"
-                        Command="{Binding HideWindow}"/>
+                Content="—"
+                Click="MinimizeWindow"/>
                     <Button Style="{StaticResource ApplicationBorderButtonShutdown}" 
-                        Content="╳" 
-                        Command="{Binding ShutdownWindow}"/>
+                Content="╳" 
+                Click="ShutdownWindow"/>
                 </StackPanel>
             </Grid>
         </Border>
 
-        <ContentPresenter Content="{Binding CurrentView}"/>
+        <ContentControl Content="{Binding CurrentView}"/>
 
     </DockPanel>
 </Window>

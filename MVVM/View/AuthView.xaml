@@ -88,6 +88,5 @@
                 </Grid>
             </StackPanel>
         </Grid>
-        <ContentPresenter Content="{Binding CurrentView}" />
     </Grid>
 </UserControl>
