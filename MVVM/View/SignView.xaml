@@ -4,7 +4,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:viewmodel="clr-namespace:EmptyBank.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:SignViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="470" d:DesignWidth="450"
              Background="#1c1c1c">
@@ -15,8 +14,10 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
-                <TextBlock Style="{StaticResource SignTextBlock}" />
-                <TextBlock Style="{StaticResource SignTextBlockMini}" />
+                <TextBlock Style="{StaticResource SignTextBlock}" 
+                           Text="{Binding SignTextBlock}"/>
+                <TextBlock Style="{StaticResource SignTextBlockMini}" 
+                           Text="{Binding SignTextBlockMini}"/>
             </StackPanel>
             <StackPanel Grid.Row="1">
                 <Grid>
@@ -50,6 +51,7 @@
                         <Button Style="{StaticResource SignInButton}"
                                 Command="{Binding ShowAuthView}"
                                 CommandParameter="{Binding ElementName=SignInPassBox}"
+                                IsEnabled="{Binding SignButtonEnabled}"
                                 x:Name="SignButton">
                             <Button.Resources>
                                 <Style TargetType="Border">
@@ -65,7 +67,7 @@
                             <TextBlock Style="{StaticResource IsSignedIn}"
                                        Grid.Column="0"/>
                             <Button Style="{StaticResource IsSignedInButton}"
-                                    Command="{Binding ShowAuthView}"
+                                    Command="{Binding ShowAuthViewMini}"
                                     x:Name="NavigateToAuth" Grid.ColumnSpan="2">
                                 <Run Style="{StaticResource IsSignedInSpan}">
                                     Войти

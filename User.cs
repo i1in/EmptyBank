@@ -36,7 +36,7 @@ namespace EmptyBank
         public string Remember
         {
             get { return remember; }
-            set { 
+            set {
                 remember = value;
                 OnPropertyChanged("Remember");
             }
