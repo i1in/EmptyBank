@@ -82,16 +82,24 @@
     <Compile Include="Core\Service\AuthService.cs" />
     <Compile Include="MVVM\Model\GetPassword.cs" />
     <Compile Include="MVVM\ViewModel\AuthViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\BankViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
     <Compile Include="MVVM\ViewModel\SignViewModel.cs" />
     <Compile Include="MVVM\View\AuthView.xaml.cs">
       <DependentUpon>AuthView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\BankWindow.xaml.cs">
+      <DependentUpon>BankWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\SignView.xaml.cs">
       <DependentUpon>SignView.xaml</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
     <Page Include="MVVM\View\AuthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\BankWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\AuthViewStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\BankWindowStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,9 +155,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="bank.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

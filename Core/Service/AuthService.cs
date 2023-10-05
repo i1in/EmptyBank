@@ -1,99 +1,89 @@
 ﻿using System;
-using System.Data.SQLite;
-using System.Linq;
 using System.Windows;
+using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Data;
+using System.Windows.Documents;
 
 namespace EmptyBank.Core.Service
 {
     internal class AuthService
     {
-        static SQLiteConnection connection;
-        static SQLiteCommand command;
-        ApplicationContext db;
+        SqlConnection sqlConnection = new SqlConnection(@"
+            Data Source = NOT1LIN\SQLEXPRESS; 
+            Initial Catalog = bank;
+            Integrated Security = True");
 
-        public bool IsExists(string login)
+        public void Connect()
         {
-            User user = null;
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                user = db.Users.FirstOrDefault(x => x.Login == login);
-                if (user != null) { return true; } else { return false; }
-            }
+            if (sqlConnection.State == System.Data.ConnectionState.Closed) sqlConnection.Open();
         }
 
-        public bool Find(string login, string password)
+        public void Disconnect()
         {
-            User user = null;
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                user = db.Users.FirstOrDefault(x => x.Login == login && x.Pass == password);
-                if (user != null) { return true; } else { return false; }
-            }
+            if (sqlConnection.State == System.Data.ConnectionState.Open) sqlConnection.Close();
         }
 
-        public void Add(string login, string password)
+        public SqlConnection Connection() { return sqlConnection; }
+
+        public void Add(string username, string password)
         {
-            try
-            {
-                using (SQLiteConnection connection = new SQLiteConnection("Data Source = bank.db"))
-                {
-                    connection.Open();
+            DataBase database = new DataBase();
+            database.Connect();
 
-                    var command = new SQLiteCommand("INSERT INTO Users (login, pass) VALUES (:login, :pass)", connection);
-                    command.Parameters.AddWithValue("login", login);
-                    command.Parameters.AddWithValue("pass", password);
-                    command.ExecuteNonQuery();
-                    return;
-                }
-            }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
-        }
+            Random rand = new Random();
 
-        public void Remove(string login, string password)
-        {
-            try
-            {
-                using (SQLiteConnection connection = new SQLiteConnection("Data Source = bank.db"))
-                {
-                    connection.Open();
+            SqlCommand cmd = new SqlCommand($"insert into Users (login, password, balance, bonuses, limit, card_number, cvc, no_commission) " +
+                $"values ('{username}', '{password}', 50000, 0, 1000000, {rand.Next(100001, 999999)}, {rand.Next(101, 999)}, 50000)", database.Connection());
 
-                    var command = new SQLiteCommand("DELETE FROM Users WHERE login=@login AND pass=@pass", connection);
-                    command.Parameters.AddWithValue("@login", login);
-                    command.Parameters.AddWithValue("@pass", password);
-                    command.ExecuteNonQuery();
-                    return;
-                }
-            }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
-        }
-
-        public void Show()
-        {
-            try
-            {
-                db = new ApplicationContext();
-                connection = new SQLiteConnection("Data Source = bank.db");
-                connection.Open();
-                command = new SQLiteCommand("SELECT * FROM Users", connection);
-                string str = "";
-                foreach(User user in db.Users.ToList() )
-                {
-                    str += $"{user.id}: {user.Login}_{user.Pass}\n";
-                }
-                MessageBox.Show(str);
-
-                
-            }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
-        }
-
-        public void DropTable()
-        {
-            connection = new SQLiteConnection("Data Source = bank.db");
-            connection.Open();
-            command = new SQLiteCommand("DROP TABLE Users", connection);
-            command.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
+            database.Disconnect();
+            MessageBox.Show($"Пользователь {username} был успешно занесён в базу.");
             return;
+        }
+
+        public void Remove(string username, string password)
+        {
+            DataBase database = new DataBase();
+            database.Connect();
+
+            SqlCommand cmd = new SqlCommand($"DELETE FROM Users WHERE login={username} AND password={password}",database.Connection());
+            cmd.ExecuteNonQuery();
+            database.Disconnect();
+            MessageBox.Show($"Пользователь {username} был успешно удалён из базы.");
+            return;
+        }
+
+        public bool Find(string name, string password)
+        {
+            DataBase database = new DataBase();
+            database.Connect();
+
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            DataTable dataTable = new DataTable();
+
+            SqlCommand cmd = new SqlCommand($"SELECT id, login, password FROM Users WHERE login='{name}' AND password='{password}'", database.Connection());
+
+            adapter.SelectCommand = cmd;
+            adapter.Fill(dataTable);
+
+            if(dataTable.Rows.Count == 1 ) return true; else return false;
+        }
+
+        public bool IsExists(string name)
+        {
+            DataBase database = new DataBase();
+            database.Connect();
+
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            DataTable dataTable = new DataTable();
+
+            SqlCommand cmd = new SqlCommand($"SELECT id, login, password FROM Users WHERE login='{name}'", database.Connection());
+
+            adapter.SelectCommand = cmd;
+            adapter.Fill(dataTable);
+
+            if (dataTable.Rows.Count == 1) return true; else return false;
         }
     }
 }

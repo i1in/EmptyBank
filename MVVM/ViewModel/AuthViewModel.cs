@@ -1,5 +1,6 @@
 ﻿using EmptyBank.Core;
 using EmptyBank.Core.Service;
+using EmptyBank.MVVM.View;
 using EmptyBank.MVVM.ViewModel;
 using Org.BouncyCastle.Bcpg.OpenPgp;
 using System;
@@ -69,6 +70,12 @@ namespace EmptyBank.MVVM.ViewModel
             set { _authCheckBox = value; OnPropertyChanged(); }
         }
 
+        public void CloseWindow()
+        {
+            var thisWindow = Application.Current.Windows[0];
+            if (thisWindow != null) thisWindow.Close();
+        }
+
         public AuthViewModel() {
             ShowMainView = new RelayCommand(sender => AuthButton(sender));
             ShowSignView = new RelayCommand(sender => ShowSignUpView(sender));
@@ -116,11 +123,15 @@ namespace EmptyBank.MVVM.ViewModel
             else { AuthPasswordWarningText = ""; AuthPasswordBrush = Brushes.Green.ToString(); }
 
             if (AuthCheckBox)
-            {
                 Properties.Settings.Default.IsRemember = AuthCheckBox;
-                MessageBox.Show(Properties.Settings.Default.IsRemember.ToString());
-                authService.Show();
-            } else { AuthCheckBox = Properties.Settings.Default.IsRemember; MessageBox.Show(Properties.Settings.Default.IsRemember.ToString());  }
+                Properties.Settings.Default.Save();
+
+
+            var openBankWindow = new BankWindow();
+            var viewmodel = openBankWindow.DataContext as BankViewModel;
+
+            openBankWindow.Show();
+            CloseWindow();
         }
 
         private void ShowSignUpView(object sender)

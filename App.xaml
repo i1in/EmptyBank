@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="/Themes/MainWindowStyle.xaml" />
                 <ResourceDictionary Source="/Themes/AuthViewStyle.xaml" />
                 <ResourceDictionary Source="/Themes/SignViewStyle.xaml" />
+                <ResourceDictionary Source="/Themes/BankWindowStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type vms:AuthViewModel}">

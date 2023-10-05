@@ -1,11 +1,27 @@
 ﻿using System.Data.Entity;
+using System.Data.SqlClient;
 
 namespace EmptyBank
 {
-    class ApplicationContext : DbContext
+    class DataBase
     {
-        public DbSet<User> Users { get; set; }
+        SqlConnection sqlConnection = new SqlConnection(@"
+            Data Source = NOT1LIN\SQLEXPRESS; 
+            Initial Catalog = bank;
+            Integrated Security = True");
 
-        public ApplicationContext() : base("DefaultConnection") { }
+        public void Connect()
+        {
+            if (sqlConnection.State == System.Data.ConnectionState.Closed) sqlConnection.Open();
+        }
+
+        public void Disconnect()
+        {
+            if (sqlConnection.State == System.Data.ConnectionState.Open) sqlConnection.Close();
+        }
+
+        public SqlConnection Connection() { return sqlConnection; }
+
+        public DbSet<User> Users { get; set; }
     }
 }

@@ -1,0 +1,65 @@
+﻿<Window x:Class="EmptyBank.MVVM.View.BankWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmptyBank.MVVM.View" 
+        xmlns:viewmodel="clr-namespace:EmptyBank.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="EmptyBank" Height="450" Width="800" ResizeMode="NoResize"
+        Background="#1c1c1c"
+        WindowStyle="None"
+        AllowsTransparency="False">
+
+    <Window.DataContext>
+        <viewmodel:BankViewModel />
+    </Window.DataContext>
+
+    <DockPanel>
+        <Border
+                Height="30" 
+                Background="#181818"
+                DockPanel.Dock="Top"
+                MouseDown="MoveWindow">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="100" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Style="{StaticResource ApplicationNameBank}"/>
+
+                <StackPanel Style="{StaticResource ApplicationBorderButtons}">
+                    <Button Style="{StaticResource ApplicationBorderButton}" 
+                            Content="—"
+                            Click="MinimizeWindow"/>
+                    <Button Style="{StaticResource ApplicationBorderButtonShutdown}" 
+                            Content="╳" 
+                            Click="ShutdownWindow"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Width="56" 
+                Background="#181818"
+                DockPanel.Dock="Left">
+            <StackPanel>
+                <RadioButton Style="{StaticResource MainView}"
+                             IsChecked="True"/>
+                <TextBlock Style="{StaticResource MainViewText}"/>
+                
+                <RadioButton Style="{StaticResource BillView}"/>
+                <TextBlock Style="{StaticResource BillViewText}"/>
+                
+                <RadioButton Style="{StaticResource HistoryView}"/>
+                <TextBlock Style="{StaticResource HistoryViewText}"/>
+                
+                <RadioButton Style="{StaticResource PersonalView}"/>
+                <TextBlock Style="{StaticResource PersonalViewText}"/>
+            </StackPanel>
+        </Border>
+
+        <ContentControl Content="{Binding CurrentView}" />
+
+    </DockPanel>
+</Window>
