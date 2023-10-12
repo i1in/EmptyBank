@@ -80,22 +80,49 @@
     <Compile Include="ApplicationContext.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\Service\AuthService.cs" />
-    <Compile Include="MVVM\Model\GetPassword.cs" />
+    <Compile Include="MVVM\Model\ServerModel.cs" />
     <Compile Include="MVVM\ViewModel\AuthViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\BankBillViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\BankHistoryViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\BankMainViewModel.cs" />
     <Compile Include="MVVM\ViewModel\BankViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\PersonalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\SignViewModel.cs" />
     <Compile Include="MVVM\View\AuthView.xaml.cs">
       <DependentUpon>AuthView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\BankBillView.xaml.cs">
+      <DependentUpon>BankBillView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\BankHistoryView.xaml.cs">
+      <DependentUpon>BankHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\BankMainView.xaml.cs">
+      <DependentUpon>BankMainView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\BankWindow.xaml.cs">
       <DependentUpon>BankWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\PersonalView.xaml.cs">
+      <DependentUpon>PersonalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\SignView.xaml.cs">
       <DependentUpon>SignView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
     <Page Include="MVVM\View\AuthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\BankBillView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\BankHistoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\BankMainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -116,6 +143,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\View\PersonalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\SignView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,11 +155,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\BankBillViewStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\BankHistoryViewStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\BankMainViewStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\BankWindowStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\MainWindowStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\PersonalViewStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,6 +238,15 @@
     <PackageReference Include="System.Data.SQLite">
       <Version>1.0.118</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\fullhdback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UserLog.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

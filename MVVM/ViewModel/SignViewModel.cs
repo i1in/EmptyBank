@@ -1,7 +1,5 @@
 ﻿using EmptyBank.Core;
 using EmptyBank.Core.Service;
-using System.Threading;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -127,7 +125,6 @@ namespace EmptyBank.MVVM.ViewModel
             SignButtonEnabled = false;
 
             authService.Add(TextLogin, TextPass);
-            MessageBox.Show("Успех!");
             MainViewModel.Instance.CurrentView = AuthViewPage;
             return;
         }

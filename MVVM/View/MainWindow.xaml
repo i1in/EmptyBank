@@ -8,7 +8,8 @@
         Title="Empty" Height="500" Width="450" ResizeMode="NoResize"
         Background="#1c1c1c"
         WindowStyle="None"
-        AllowsTransparency="False">
+        AllowsTransparency="False"
+        Loaded="Window_Loaded">
     
     <Window.DataContext>
         <viewmodel:MainViewModel />

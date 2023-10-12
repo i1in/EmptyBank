@@ -36,6 +36,5 @@ namespace EmptyBank.Core
             var password = (string)values[0];
             var repeatPassword = (string)values[1];
         }
-
     }
 }

@@ -55,6 +55,28 @@
         <Setter Property="Margin" Value="0,0,0,10"/>
     </Style>
 
+    <Style TargetType="{x:Type ToolTip}" x:Key="MainViewTip">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="#282828" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Height" Value="36" />
+        <Setter Property="Width" Value="64" />
+        <Setter Property="PlacementRectangle" Value="50, 10, 0, 0"/>
+        <Setter Property="Placement" Value="Right"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToolTip}">
+                    <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="4">
+                        <TextBlock Text="Главная"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type TextBlock}" x:Key="BillViewText">
         <Setter Property="Text" Value="Платежи"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -96,6 +118,28 @@
                                     Value="White"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ToolTip}" x:Key="BillViewTip">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="#282828" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Height" Value="36" />
+        <Setter Property="Width" Value="64" />
+        <Setter Property="PlacementRectangle" Value="50, 10, 0, 0"/>
+        <Setter Property="Placement" Value="Right"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToolTip}">
+                    <Border Background="{TemplateBinding Background}" 
+                            CornerRadius="4">
+                        <TextBlock Text="Платежи"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"/>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -147,9 +191,31 @@
         </Setter>
     </Style>
 
+    <Style TargetType="{x:Type ToolTip}" x:Key="HistoryViewTip">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="#282828" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Height" Value="36" />
+        <Setter Property="Width" Value="64" />
+        <Setter Property="PlacementRectangle" Value="50, 10, 0, 0"/>
+        <Setter Property="Placement" Value="Right"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToolTip}">
+                    <Border Background="{TemplateBinding Background}" 
+                        CornerRadius="4">
+                        <TextBlock Text="История"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type RadioButton}" x:Key="PersonalView">
         <Setter Property="Background" Value="#212121" />
-        <Setter Property="Margin" Value="4, 135, 4, 0" />
+        <Setter Property="Margin" Value="4, 210, 4, 0" />
         <Setter Property="Height" Value="46" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="Cursor" Value="Hand" />
@@ -192,5 +258,27 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="Gray" />
         <Setter Property="Margin" Value="0,0,0,10"/>
+    </Style>
+    
+    <Style TargetType="{x:Type ToolTip}" x:Key="PersonalViewTip">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="#282828" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Height" Value="36" />
+        <Setter Property="Width" Value="64" />
+        <Setter Property="PlacementRectangle" Value="50, 10, 0, 0"/>
+        <Setter Property="Placement" Value="Right"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToolTip}">
+                    <Border Background="{TemplateBinding Background}" 
+                    CornerRadius="4">
+                        <TextBlock Text="Кабинет"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

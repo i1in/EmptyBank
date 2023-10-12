@@ -7,7 +7,7 @@
         xmlns:viewmodel="clr-namespace:EmptyBank.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="EmptyBank" Height="450" Width="800" ResizeMode="NoResize"
-        Background="#1c1c1c"
+        Background="#181818"
         WindowStyle="None"
         AllowsTransparency="False">
 
@@ -45,16 +45,28 @@
                 DockPanel.Dock="Left">
             <StackPanel>
                 <RadioButton Style="{StaticResource MainView}"
-                             IsChecked="True"/>
+                             IsChecked="True"
+                             Command="{Binding ShowBankView}">
+                    <RadioButton.ToolTip>
+                        <ToolTip Style="{StaticResource MainViewTip}"/>
+                    </RadioButton.ToolTip>
+                </RadioButton>
                 <TextBlock Style="{StaticResource MainViewText}"/>
-                
-                <RadioButton Style="{StaticResource BillView}"/>
+
+                <RadioButton Style="{StaticResource BillView}"
+                             Command="{Binding ShowBillView}">
+                    <RadioButton.ToolTip>
+                        <ToolTip Style="{StaticResource BillViewTip}"/>
+                    </RadioButton.ToolTip>
+                </RadioButton>
                 <TextBlock Style="{StaticResource BillViewText}"/>
-                
-                <RadioButton Style="{StaticResource HistoryView}"/>
-                <TextBlock Style="{StaticResource HistoryViewText}"/>
-                
-                <RadioButton Style="{StaticResource PersonalView}"/>
+
+                <RadioButton Style="{StaticResource PersonalView}"
+                             Command="{Binding ShowPersonalView}">
+                    <RadioButton.ToolTip>
+                        <ToolTip Style="{StaticResource PersonalViewTip}"/>
+                    </RadioButton.ToolTip>
+                </RadioButton>
                 <TextBlock Style="{StaticResource PersonalViewText}"/>
             </StackPanel>
         </Border>

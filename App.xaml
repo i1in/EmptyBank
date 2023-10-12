@@ -13,6 +13,10 @@
                 <ResourceDictionary Source="/Themes/AuthViewStyle.xaml" />
                 <ResourceDictionary Source="/Themes/SignViewStyle.xaml" />
                 <ResourceDictionary Source="/Themes/BankWindowStyle.xaml" />
+                <ResourceDictionary Source="/Themes/BankMainViewStyle.xaml" />
+                <ResourceDictionary Source="/Themes/BankBillViewStyle.xaml" />
+                <ResourceDictionary Source="/Themes/BankHistoryViewStyle.xaml" />
+                <ResourceDictionary Source="/Themes/PersonalViewStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type vms:AuthViewModel}">
@@ -22,6 +26,23 @@
             <DataTemplate DataType="{x:Type vms:SignViewModel}">
                 <view:SignView />
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vms:BankMainViewModel}">
+                <view:BankMainView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vms:BankBillViewModel}">
+                <view:BankBillView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vms:BankHistoryViewModel}">
+                <view:BankHistoryView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vms:PersonalViewModel}">
+                <view:PersonalView />
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

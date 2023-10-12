@@ -1,0 +1,148 @@
+﻿<UserControl x:Class="EmptyBank.MVVM.View.BankMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EmptyBank.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="420" d:DesignWidth="744">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource Greetings}"
+            Text="{Binding GreetingsText}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"/>
+        <Button Style="{StaticResource RefreshData}"
+                Command="{Binding Refresh}">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="55" />
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Кошелёк ›"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       FontFamily="Roboto"
+                       FontSize="22"
+                       Foreground="White"
+                       Margin="25, 40, 0, 0"/>
+            <Border Style="{StaticResource UserCardBorder}" HorizontalAlignment="Right" Margin="0,80,21,0" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource BankLogo}"/>
+                        <TextBlock Style="{StaticResource BankLogoText}">
+                            Empty <LineBreak />
+                            Bank
+                        </TextBlock>
+                        <TextBlock Style="{StaticResource WirelessLogo}"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Line X1="0" X2="330" StrokeThickness="5" Stroke="#181818" Margin="0, 5, 0, 0"/>
+                        <TextBlock Style="{StaticResource CardInternational}" />
+                        <TextBlock Style="{StaticResource CardNumber}"
+                            Text="{Binding CardNumber}">
+                            <TextBlock.ToolTip>
+                                <ToolTip Content="{Binding CardNumberTip}" 
+                                    x:Name="CardNumberTip"/>
+                            </TextBlock.ToolTip>
+                        </TextBlock>
+                        <TextBlock Text="{Binding CardBalance}"
+                            Style="{StaticResource CardBalance}"
+                            x:Name="CardBalance"/>
+                        <TextBlock Style="{StaticResource CardCVC}"
+                            Text="CVC: ***">
+                            <TextBlock.ToolTip>
+                                <ToolTip Content="{Binding CardCVC}" />
+                            </TextBlock.ToolTip>
+                        </TextBlock>
+                    </Grid>
+                </Grid>
+
+            </Border>
+            <Border Style="{StaticResource UserBonusBorder}" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource CashbackText}"/>
+                        <TextBlock Style="{StaticResource CashbackLogo}"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Line X1="0" X2="330" StrokeThickness="5" Stroke="#181818" Margin="0, 4, 0, 0"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="165"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <TextBlock Text="{Binding CashbackBalance}"
+                                       Style="{StaticResource CashbackBalance}"/>
+                                <Button Style="{StaticResource CashbackWhy}"
+                                    Command="{Binding ShowModalTitle}" HorizontalAlignment="Right" Margin="0,138,-55,0" VerticalAlignment="Top">
+                                    <Run Style="{StaticResource CashbackWhyText}">
+                                        Как получить?
+                                    </Run>
+                                </Button>
+                            </Grid>
+                            <TextBlock Style="{StaticResource CashbackCardLogo}"/>
+                            <Grid>
+                                <Border Background="#1c1c1c" 
+                                        Margin="5,10,-160,5"
+                                        CornerRadius="0,0,8,8"
+                                        Visibility="{Binding ModalTitle}">
+                                    <StackPanel>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Style="{StaticResource CashbackTitleText}"/>
+                                            <Grid Grid.Row="1" Height="131" VerticalAlignment="Top">
+                                                <TextBlock Style="{StaticResource CashbackInfoText}">
+                                                    Получайте вознаграждение за каждый перевод и <LineBreak />
+                                                    наслаждайтесь преимуществами кэшбэка* вместе с <LineBreak />
+                                                    EmptyBank! <LineBreak />
+                                                    У нас вы можете легко начать накапливать кэшбэк и<LineBreak />
+                                                    использовать его для своих нужд.
+                                                </TextBlock>
+                                                <TextBlock Style="{StaticResource CashbackTerm}"/>
+                                                <Button Style="{StaticResource HideModalTitle}"
+                                                        Command="{Binding HideModalTitle}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,14 +1,8 @@
 ﻿using EmptyBank.Core;
 using EmptyBank.Core.Service;
 using EmptyBank.MVVM.View;
-using EmptyBank.MVVM.ViewModel;
-using Org.BouncyCastle.Bcpg.OpenPgp;
+using EmptyBank.MVVM.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -87,6 +81,7 @@ namespace EmptyBank.MVVM.ViewModel
         private void AuthButton(object sender)
         {
             AuthService authService = new AuthService();
+            ServerModel serverModel = new ServerModel();
             PasswordBox password = sender as PasswordBox;
             if (password != null) { PassText = password.Password; }
 
@@ -123,9 +118,14 @@ namespace EmptyBank.MVVM.ViewModel
             else { AuthPasswordWarningText = ""; AuthPasswordBrush = Brushes.Green.ToString(); }
 
             if (AuthCheckBox)
+            {
                 Properties.Settings.Default.IsRemember = AuthCheckBox;
+                Properties.Settings.Default.userID = Convert.ToInt32(authService.GetID(LoginText, PassText));
                 Properties.Settings.Default.Save();
+            }
 
+            authService.FindUserID(LoginText, PassText);
+            serverModel.Server();
 
             var openBankWindow = new BankWindow();
             var viewmodel = openBankWindow.DataContext as BankViewModel;

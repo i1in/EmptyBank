@@ -1,0 +1,433 @@
+﻿<UserControl x:Class="EmptyBank.MVVM.View.BankBillView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EmptyBank.MVVM.View" xmlns:viewmodel="clr-namespace:EmptyBank.MVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:BankBillViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="420" d:DesignWidth="744">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource BillViewTitle}"/>
+        <TextBlock VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="0, 0, 50, 0"
+                   FontFamily="Roboto"
+                   FontSize="16"
+                   Text="{Binding TermRefresh}"
+                   Foreground="Red" />
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource BillCard}">
+                <Grid>
+                    <Border Background="#262626"
+                            Grid.RowSpan="5"
+                            CornerRadius="8">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="200"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0"
+                                       Text="Перевод по карте"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="22"
+                                       FontFamily="Roboto"
+                                       Foreground="White"/>
+                            <Line X1="0" X2="300" StrokeThickness="5" Stroke="#181818" Margin="0, 4, 0, 0" Grid.Row="1"/>
+                            <TextBlock Grid.Row="1"
+                                       Text="Номер карты"
+                                       Foreground="White"
+                                       VerticalAlignment="Top"
+                                       HorizontalAlignment="Left"
+                                       Margin="25, 25, 0, 0"
+                                       FontFamily="Roboto"
+                                       FontSize="20"/>
+                            <TextBox Grid.Row="1"
+                                     Text="{Binding BillViewCard}"
+                                     BorderBrush="{Binding BillCardBrush}"
+                                     Margin="25, 0, 0, 70"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Left"
+                                     Height="30"
+                                     Width="200"
+                                     Foreground="White"
+                                     FontSize="18"
+                                     Background="Transparent"
+                                     BorderThickness="0,0,0,2"
+                                     MaxLength="16"
+                                     CaretBrush="White"/>
+                            <TextBlock Text="{Binding BillCardWarning}"
+                                       Grid.Row="1"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="25, 0, 0, 20"
+                                       Foreground="Red"/>
+
+                            <Line X1="0" X2="300" StrokeThickness="2" Stroke="#181818" Margin="0, 10, 0, 0" VerticalAlignment="Center" Grid.Row="1"/>
+                            <TextBlock Text="Сумма"
+                                       Grid.Row="1"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="25, 60 0, 0"
+                                       FontSize="20"
+                                       FontFamily="Roboto"
+                                       Foreground="White"/>
+                            <Border VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Grid.Row="1"
+                                    Margin="0, 60, 100, 0"
+                                    Background="#181818"
+                                    Width="16"
+                                    Height="16"
+                                    Padding="5, 0, 0, 0"
+                                    CornerRadius="35">
+                                <TextBlock FontFamily="Roboto"
+                                           FontSize="14"
+                                           Foreground="White"
+                                           Text="?"/>
+                                <Border.ToolTip>
+                                    <TextBlock>
+                                        Учитывайте комиссию и кэшбэк:<LineBreak />
+                                        Комиссия - 10% от суммы переводов;<LineBreak />
+                                        Кэшбэк - 3% от суммы переводов.
+                                    </TextBlock>
+                                </Border.ToolTip>
+                            </Border>
+
+                            <TextBox Grid.Row="1"
+                                     Text="{Binding BillBalance}"
+                                     BorderBrush="{Binding BillBalanceBrush}"
+                                     Margin="25, 110, 0, 0"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Left"
+                                     Height="30"
+                                     Width="200"
+                                     Foreground="White"
+                                     FontSize="18"
+                                     Background="Transparent"
+                                     BorderThickness="0,0,0,2"
+                                     MaxLength="16"
+                                     CaretBrush="White"/>
+                            <TextBlock Text="{Binding BillBalanceWarning}"
+                                       Grid.Row="1"
+                                       VerticalAlignment="Bottom"
+                                       HorizontalAlignment="Left"
+                                       Margin="25, 0, 0, 10"
+                                       Foreground="Red"/>
+                            <Line X1="0" X2="300" StrokeThickness="2" Stroke="#181818" Margin="0, 190, 0, 0" VerticalAlignment="Center" Grid.Row="1"/>
+
+                            <Button Style="{Binding ButtonCardApprove}" 
+                                Grid.Row="2"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Center"
+                                    Margin="0, 5, 0, 0"
+                                    Height="48"
+                                    Width="120"
+                                    Content="Далее"
+                                    FontSize="24"
+                                    FontFamily="Roboto"
+                                    BorderThickness="0,0,0,0"
+                                    Background="#181818"
+                                    Foreground="White"
+                                    Command="{Binding BillApprove}"
+                                    Cursor="Hand">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5" />
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Border Grid.RowSpan="3"
+                                    Background="#262626"
+                                    CornerRadius="8"
+                                    Visibility="{Binding ApproveCardVisibility}">
+                                <Border Background="#181818"
+                                        Margin="8"
+                                        CornerRadius="8">
+                                    <Border Background="#262626"
+                                            Margin="8"
+                                            CornerRadius="8">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Text="Подтверждение перевода"
+                                                       FontSize="18"
+                                                       FontFamily="Roboto"
+                                                       Foreground="White"
+                                                       VerticalAlignment="Top"
+                                                       HorizontalAlignment="Center"
+                                                       Margin="4, 5, 0, 0"
+                                                       Grid.Row="0"/>
+                                            <Button VerticalAlignment="Center"
+                                                    HorizontalAlignment="Left"
+                                                    Margin="1, 0, 0, 1"
+                                                    Height="22"
+                                                    Width="22"
+                                                    Content="‹"
+                                                    FontSize="32"
+                                                    Padding="0, -15, 0, 0"
+                                                    BorderThickness="0,0,0,0"
+                                                    Background="Transparent"
+                                                    Foreground="White"
+                                                    Cursor="Hand"
+                                                    Command="{Binding HideApproveMenuButton}"/>
+                                            <Line Grid.Row="0" X1="0" X2="268" Margin="0, 35, 0, 0" StrokeThickness="3" Stroke="#181818"/>
+                                            <TextBlock Grid.Row="1"
+                                                       VerticalAlignment="Top"
+                                                       HorizontalAlignment="Left"
+                                                       Text="Счёт списания"
+                                                       Margin="25, 5, 0, 0"
+                                                       Foreground="Gray"
+                                                       FontSize="13"
+                                                       FontFamily="Roboto"/>
+                                            <TextBlock Grid.Row="1" 
+                                                       VerticalAlignment="Top"
+                                                        HorizontalAlignment="Left"
+                                                        Text="{Binding BillCardTransaction}"
+                                                        Margin="25, 28, 0, 0"
+                                                        Foreground="White"
+                                                        FontSize="12"
+                                                       FontFamily="Roboto"/>
+                                            <TextBlock Grid.Row="1"
+                                                       VerticalAlignment="Top"
+                                                       HorizontalAlignment="Right" 
+                                                       Margin="0, 28, 25, 0"
+                                                       Text="{Binding BillBalanceTransaction}"
+                                                       FontSize="12"
+                                                       Foreground="White"
+                                                       FontFamily="Roboto"/>
+                                            <Line Grid.Row="1" X1="0" X2="268" Margin="0, 53, 0, 0" StrokeThickness="3" Stroke="#181818"/>
+                                            <TextBlock Grid.Row="2"
+                                                       VerticalAlignment="Top"
+                                                       HorizontalAlignment="Left"
+                                                       Text="Реквизиты получателя"
+                                                       Margin="25, 5, 0, 0"
+                                                       Foreground="Gray"
+                                                       FontSize="13"
+                                                       FontFamily="Roboto"/>
+                                            <TextBlock Grid.Row="2" 
+                                                       VerticalAlignment="Top"
+                                                       HorizontalAlignment="Left"
+                                                       Text="{Binding ReceiverData}"
+                                                       Margin="25, 28, 0, 0"
+                                                       Foreground="White"
+                                                       FontSize="12"
+                                                       FontFamily="Roboto"/>
+                                            <Line Grid.Row="2" X1="0" X2="268" Margin="0, 53, 0, 0" StrokeThickness="3" Stroke="#181818"/>
+                                            <Grid Grid.Row="3">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Grid.Column="0"
+                                                           VerticalAlignment="Top"
+                                                           HorizontalAlignment="Left"
+                                                           Text="Сумма перевода"
+                                                           Margin="25, 5, 0, 0"
+                                                           Foreground="Gray"
+                                                           FontSize="13"
+                                                           FontFamily="Roboto"/>
+                                                <TextBlock Grid.Column="0"
+                                                           VerticalAlignment="Top"
+                                                           HorizontalAlignment="Left"
+                                                           Text="{Binding ResultBill}"
+                                                           Margin="25, 28, 0, 0"
+                                                           Foreground="White"
+                                                           FontSize="14"
+                                                           FontFamily="Roboto"/>
+                                                <TextBlock Grid.Column="1"
+                                                           VerticalAlignment="Top"
+                                                           HorizontalAlignment="Left"
+                                                           Text="Комиссия"
+                                                           Margin="25, 5, 0, 0"
+                                                           Foreground="Gray"
+                                                           FontSize="13"
+                                                           FontFamily="Roboto"/>
+                                                <TextBlock Grid.Column="1"
+                                                           VerticalAlignment="Top"
+                                                           HorizontalAlignment="Left"
+                                                           Text="{Binding ResultBillCommission}"
+                                                           Margin="25, 28, 0, 0"
+                                                           Foreground="Red"
+                                                           FontSize="14"
+                                                           FontFamily="Roboto"/>
+                                            </Grid>
+                                            <Line Grid.Row="3" X1="0" X2="268" Margin="0, 53, 0, 0" StrokeThickness="3" Stroke="#181818"/>
+                                            <Button Grid.Row="4"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"
+                                                    Height="36"
+                                                    Width="120"
+                                                    Content="Перевести"
+                                                    BorderThickness="0,0,0,0"
+                                                    Foreground="White"
+                                                    FontSize="16"
+                                                    FontFamily="Roboto"
+                                                    Background="#181818"
+                                                    Cursor="Hand"
+                                                    Command="{Binding Approve}">
+                                                <Button.Resources>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="CornerRadius" Value="5" />
+                                                    </Style>
+                                                </Button.Resources>
+                                            </Button>
+                                        </Grid>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Width="300"
+                        Height="100"
+                        Background="#262626"
+                        Margin="20"
+                        CornerRadius="8">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Лимит на переводы"
+                                   FontSize="24"
+                                   FontFamily="Roboto"
+                                   Foreground="White"
+                                   HorizontalAlignment="Center"
+                                   Margin="0, 5, 0, 0"/>
+                        <Button VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                Height="24"
+                                Width="24"
+                                Content="↻"
+                                FontFamily="Roboto"
+                                FontSize="20"
+                                Background="#181818"
+                                Foreground="White"
+                                BorderThickness="0,0,0,0"
+                                Margin="0, 0, 5, 0"
+                                Command="{Binding RefreshDataLimit}"
+                                Cursor="Hand">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10" />
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Border Background="#181818"
+                                Grid.Row="1"
+                                Margin="5,5,5,5"
+                                CornerRadius="8">
+                            <Border Background="#262626"
+                                    Margin="5,5,5,5"
+                                    CornerRadius="8">
+                                <TextBlock Text="{Binding LeftLimit}"
+                                           Foreground="White"
+                                           FontSize="20"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                            </Border>
+                        </Border>
+                    </Grid>
+                </Border>
+                <Border Grid.Row="1">
+                    <Border Grid.Row="0"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Center"
+                            Width="300"
+                            Height="170"
+                            Background="#262626"
+                            Margin="0, 0, 0, 20"
+                            CornerRadius="8">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="24"
+                                       Foreground="White"
+                                       FontFamily="Roboto"
+                                       Margin="0, 7, 0, 0"
+                                       Grid.Row="0">
+                                Лимит на переводы <LineBreak /> ㅤ без комиссии
+                            </TextBlock>
+                            <Button VerticalAlignment="Top"
+                                    HorizontalAlignment="Right"
+                                    Height="24"
+                                    Width="24"
+                                    Content="↻"
+                                    FontFamily="Roboto"
+                                    FontSize="20"
+                                    Background="#181818"
+                                    Foreground="White"
+                                    BorderThickness="0,0,0,0"
+                                    Margin="0, 10, 5, 0"
+                                    Command="{Binding RefreshDataCommission}"
+                                    Cursor="Hand">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="10" />
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+                            <Border Grid.Row="1">
+                                <Border Background="#181818"
+                                Grid.Row="1"
+                                Margin="5,5,5,5"
+                                CornerRadius="10">
+                                    <Border Background="#262626"
+                                    Margin="3,3,3,3"
+                                    CornerRadius="10">
+                                        <Grid>
+                                            <TextBlock Foreground="White"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       Margin="0, 0, 0, 30"
+                                                       FontSize="19" 
+                                                       Text="{Binding LeftCommission}"/>
+                                            <TextBlock Foreground="Gray"
+                                                       VerticalAlignment="Top"
+                                                       HorizontalAlignment="Center"
+                                                       Margin="0,60,0,0"
+                                                       FontFamily="Roboto"
+                                                       FontSize="11.5">
+                                                Лимит обновится в следующем месяце. Действует <LineBreak /> 
+                                                ㅤ в приложении и веб-приложении EmptyBank.
+                                            </TextBlock>
+                                        </Grid>
+                                    </Border>
+                                </Border>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

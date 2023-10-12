@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 
 namespace EmptyBank
 {
@@ -21,7 +20,5 @@ namespace EmptyBank
         }
 
         public SqlConnection Connection() { return sqlConnection; }
-
-        public DbSet<User> Users { get; set; }
     }
 }
